@@ -15,7 +15,7 @@ int main(void)
 		putchar(p + '0');
 		if (p != 9)
 		{
-			putchar('.');
+			putchar(',');
 			putchar(' ');
 		}
 	}
