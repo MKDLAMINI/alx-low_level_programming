@@ -5,6 +5,10 @@
  * Return: length
  */
 int _strlen(char *s)
+<<<<<<< HEAD
+=======
+
+>>>>>>> edc2ded04026d5382b600f718f27a293d137631e
 {
 	int len = 0;
 
