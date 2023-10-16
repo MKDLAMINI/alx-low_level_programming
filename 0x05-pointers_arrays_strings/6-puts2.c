@@ -9,7 +9,7 @@
 void puts2(char *str)
 
 {
-	int len = 0;
+	int length = 0;
 
 	int t = 0;
 
@@ -22,11 +22,11 @@ void puts2(char *str)
 	{
 		x++;
 
-		len++;
+		length++;
 
 	}
 
-	t = len - 1;
+	t = length - 1;
 
 	for (o = 0 ; o <= t ; o++)
 
