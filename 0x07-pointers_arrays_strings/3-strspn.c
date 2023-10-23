@@ -9,6 +9,7 @@
 
 
 unsigned int _strspn(char *s, char *accept)
+
 {
 	unsigned int x = 0;
 
@@ -28,7 +29,7 @@ unsigned int _strspn(char *s, char *accept)
 
 			else if (accept[y + 1] == '\0')
 
-				return (y);
+				return (x);
 
 		}
 
@@ -36,6 +37,6 @@ unsigned int _strspn(char *s, char *accept)
 
 	}
 
-	return (y);
+	return (x);
 
 }
