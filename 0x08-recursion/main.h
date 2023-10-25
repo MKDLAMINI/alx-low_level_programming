@@ -13,6 +13,7 @@ int _sqrt_recursion(int n);
 int is_prime_number(int n);
 int definite_sqrt_recursion(int n, int index);
 int definite_prime(int n, int index);
-
+int validate_palindrome(char *s, int index, int length);
+int is_palindrome(char *s);
 
 #endif
