@@ -1,15 +1,18 @@
 #include "main.h"
-#include<stdio.h>
 /**
- * main - This is the definite function of C code
- *
- * Return: returns 0 upon successful compilation
+ * _puts - function prints a string followed by newline
+ * @str: prints out the string
  */
-int main(void)
-
+void _puts(char *str)
 {
-	puts("\"Programming is like building a multilingual puzzle");
+	while (*str != '\0')
 
-	return (0);
+	{
+		_putchar(*str++);
+
+	}
+
+
+		_putchar('\n');
 
 }

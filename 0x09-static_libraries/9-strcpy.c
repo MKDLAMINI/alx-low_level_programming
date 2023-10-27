@@ -1,39 +1,34 @@
 #include "main.h"
 /**
-* char *_strcpy - Function duplicates from src
-* @dest: value from src copied into dest
-* @src: value copied from src
-* Return: return string value if successfu;
-*/
+ * char *_strcpy - a function that copies the string pointed to by src
+ * @dest: copy to
+ * @src: copy from
+ * Return: string
+ */
+
 char *_strcpy(char *dest, char *src)
 
 {
-	int f;
+	int k = 0;
 
-	int g;
+	int y = 0;
 
-	f = 0;
-
-	g = 0;
-
-	while (*(src + f) != '\0')
+	while (*(src + k) != '\0')
 
 	{
-		f++;
+		k++;
 
 	}
 
-	for ( ; g < f ; g++)
+	for (; y < k ; y++)
 
 	{
-
-		dest[g] = src[g];
+		dest[y] = src[y];
 
 	}
 
-	dest[f] = '\0';
+	dest[k] = '\0';
 
 	return (dest);
-
 
 }
