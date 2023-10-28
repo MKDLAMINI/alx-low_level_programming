@@ -1,38 +1,48 @@
 #include "main.h"
+#include <limits.h>
 /**
- * _atoi - This function will change the string into an int
- * @s: This is the string that will be changed
- * Return: returns integer when successful
+ * _atoi - converts a string to an integer
+ * @s: string to be converted
+ *
+ * Return: the int converted from the string
  */
+
 int _atoi(char *s)
-
 {
-	int symbol = 1, q = 0;
+	int i = 0;
+	int n = 0;
+	int is_negative = 0;
 
-	unsigned int reset = 0;
-
-	while (!(s[q] <= '9' && s[q] >= '0') && s[q] != '\0')
-
+	if (s[0] == '-')
 	{
-		if (s[q] == '-')
+		is_negative = 1;
+		i = 1;
+	}
 
-		symbol *= -1;
+	while (s[i])
+	{
+		if (s[i] >= '0' && s[i] <= '9')
+		{
+			int digit = s[i] - '0';
 
-		q++;
+			if (!is_negative && (n > INT_MAX / 10 || (n == INT_MAX / 10 && digit > 7)))
+				return (INT_MAX);
+			if (is_negative && (n < INT_MIN / 10 || (n == INT_MIN / 10 && digit > 8)))
+				return (INT_MIN);
+
+			n = n * 10 + digit;
+
+		}
+		else
+		{
+			break;
+
+		}
+
+		i++;
 
 	}
 
-	while (s[q] <= '9' && (s[q] >= '0' && s[q] != '\0'))
+	return (is_negative ? -n : n);
 
-	{
-		reset = (reset * 10) + (s[q] - '0');
-
-		q++;
-
-	}
-
-	reset *= symbol;
-
-	return (reset);
 }
-

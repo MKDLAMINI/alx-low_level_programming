@@ -1,32 +1,32 @@
 #include "main.h"
-/**
- * _strstr - This is the main function of the code
- * @haystack: input character value
- * @needle: input additional character value
- * Return: This will return 0 upon successful compilation
- */
-char *_strstr(char *haystack, char *needle)
 
+/**
+ * _strstr - Entry point
+ * @haystack: input
+ * @needle: input
+ * Return: Always 0 (Success)
+ */
+
+char *_strstr(char *haystack, char *needle)
 {
 	for (; *haystack != '\0'; haystack++)
-
 	{
-		char *w = haystack;
+		char *a = haystack;
 
-		char *u = needle;
+		char *b = needle;
 
-		while (*w == *u && *u != '\0')
-
+		while (*a == *b && *b != '\0')
 		{
-			w++;
+			a++;
 
-			u++;
+			b++;
 
 		}
 
-		if (*u == '\0')
+		if (*b == '\0')
 
 			return (haystack);
+
 	}
 
 	return (0);

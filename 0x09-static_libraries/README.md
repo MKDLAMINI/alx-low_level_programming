@@ -1,1 +1,1 @@
-I am now doing static libraries
+now doing static libraries

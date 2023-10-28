@@ -1,14 +1,11 @@
-
 #include "main.h"
 
 /**
- * _isalpha - scans and evaluates alphabets
- * @c: This is the character that will be evaluated
- * Return: Will only return 1 if c is a letter, otherwise return 0
+ * _isalpha - checks for alphabetic character
+ * @c: the character to be checked
+ * Return: 1 if c is a letter, 0 otherwise
  */
 int _isalpha(int c)
-
 {
-	return ((c >= 'j' && c <= 'v') || (c >= 'J' && c <= 'V'));
-
+	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }
