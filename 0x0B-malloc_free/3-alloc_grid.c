@@ -11,35 +11,41 @@
 int **alloc_grid(int width, int height)
 {
 	int **two_dimensional_grid;
-	int h;
-	int w;
+	int ht;
+	int wt;
 
 	if (width <= 0 || height <= 0)
-	{
 		return (NULL);
-	}
-	two_dimensional_grid = malloc(height * sizeof(int *));
+
+	two_dimensional_grid = malloc(sizeof(int *) * height);
+
 	if (two_dimensional_grid == NULL)
-	{
-		free(two_dimensional_grid);
 		return (NULL);
-	}
-	for (h = 0; h < height; h++)
+
+	for (ht = 0; ht < height; ht++)
 	{
-		two_dimensional_grid[h] = malloc(width + sizeof(int));
-		if (two_dimensional_grid[h] == NULL)
+		two_dimensional_grid[ht] = malloc(sizeof(int) * width);
+
+		if (two_dimensional_grid[ht] == NULL)
 		{
-			for (h--; h >= 0; h--)
+			for (; ht >= 0 ; ht--)
+
+				free(two_dimensional_grid[ht]);
 
 			free(two_dimensional_grid);
-			free(two_dimensional_grid[h]);
+
 			return (NULL);
+
 		}
 
 	}
-	for (h = 0; h < height; h++)
-		for (w = 0; w < width; w++)
-			two_dimensional_grid[h][w] = 0;
-
+	for (ht = 0; ht < height; ht++)
+	{
+		for (wt = 0; wt < width; wt++)
+			two_dimensional_grid[ht][wt] = 0;
+	}
 	return (two_dimensional_grid);
+
 }
+
+
