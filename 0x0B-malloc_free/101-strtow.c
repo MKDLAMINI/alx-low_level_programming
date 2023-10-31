@@ -1,66 +1,97 @@
 #include "main.h"
 #include <stdlib.h>
-/**
- * the_free_grid - main function
- * @grid: This is the input value
- * @elevation: This is the input value
- */
-void the_free_grid(char **grid, size_t elevation)
-{
-	if (grid != NULL && elevation != 0)
-	{
-		for (; elevation > 0; elevation--)
-		free(grid[elevation]);
-			free(grid[elevation]);
-		free(grid);
-	}
 
-}
+void use(char **, char *);
+void make_word(char **, char *, int, int, int);
+
 /**
- * strtow - This function splits a string into words
- * @str: This is the string that will split
+ * strtow - function splits string into words
+ * @str: string value
  *
- * Return: This will return ptr to an array of strings
+ * Return: this will return a pointer to an array
  */
 char **strtow(char *str)
 {
-	char **magician;
-	size_t t, elevation, o, r, mm;
+	int u, flag, length;
+	char **words;
 
-	if (str == NULL || *str == '\0')
+	if (str == NULL || str[0] == '\0' || (str[0] == ' ' && str[1] == '\0'))
 		return (NULL);
-	for (t = elevation = 0; str[t] != '\0'; t++)
-		if (str[t] != ' ' && (str[t + 1] == ' ' || str[t + 1] == '\0'))
-		elevation++;
+
+	u = flag = length = 0;
+	while (str[u])
 	{
-		magician = malloc((elevation + 1) * sizeof(char *));
-	}
-		if (magician == NULL)
+		if (flag == 0 && str[u] != ' ')
+			flag = 1;
+		if (u > 0 && str[u] == ' ' && str[u - 1] != ' ')
 		{
-			free(magician);
-			return (NULL);
+			flag = 0;
+			length++;
 		}
-	for (o = mm = 0; o < elevation; o++)
+		u++;
+
+	}
+	length += flag == 1 ? 1 : 0;
+
+	if (length == 0)
+		return (NULL);
+
+	words = (char **)malloc(sizeof(char *) * (length + 1));
+
+	if (words == NULL)
+		return (NULL);
+
+	use(words, str);
+	words[length] = NULL;
+	return (words);
+}
+
+/**
+ * use - gets words into an array
+ * @words: string array value
+ * @str: the string value
+ */
+void use(char **words, char *str)
+{
+	int u, k, start, flag;
+
+	u = k = flag = 0;
+	while (str[u])
 	{
-		for (t = mm; str[t] != '\0'; t++)
+		if (flag == 0 && str[u] != ' ')
 		{
-			if (str[t] == ' ')
-				mm++;
-			if (str[t] != ' ' && (str[t + 1] == ' ' || str[t + 1] == '\0'))
-			{
-				magician[t] = malloc((t - mm + 2) * sizeof(char));
-				if (magician[t] == NULL)
-				{
-				the_free_grid(magician, t);
-				return (NULL);
-				}
-				break;
-			}
+			start = u;
+			flag = 1;
 		}
-		for (r = 0; mm <= t; mm++, r++)
-			magician[t][r] = str[mm];
-		magician[t][r] = '\0';
+
+		if (u > 0 && str[u] == ' ' && str[u - 1] != ' ')
+		{
+			make_word(words, str, start, u, k);
+			k++;
+			flag = 0;
+		}
+		u++;
 	}
-	magician[t] = NULL;
-	return (magician);
+	if (flag == 1)
+		make_word(words, str, start, u, k);
+}
+
+/**
+ * make_word - makes a word and places it into an array
+ * @words: the string of arrays
+ * @str: the string value
+ * @start: the beginning of the word
+ * @end: the end process of the word
+ * @index: index of an array
+ */
+void make_word(char **words, char *str, int start, int end, int index)
+{
+	int u, k;
+
+	u = end - start;
+	words[index] = (char *)malloc(sizeof(char) * (u - 1));
+
+	for (k = 0; start < end; start++, k++)
+		words[index][k] = str[start];
+	words[index][k] = '\0';
 }
