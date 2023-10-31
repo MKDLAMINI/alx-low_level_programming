@@ -1,30 +1,20 @@
 #include "main.h"
 #include <stdlib.h>
 /**
- * word_counter - function counts number of words in a string
- * @p: The character to be evaluated
- *
- * Return: This will return the amount of words
+ * the_free_grid - main function
+ * @grid: This is the input value
+ * @elevation: This is the input value
  */
-int word_counter(char *p)
+void the_free_grid(char **grid, size_t elevation)
 {
-	int signal, v, hh;
-
-	signal = 0;
-
-	hh = 0;
-
-	for (v = 0; p[v] != '\0'; v++)
+	if (grid != NULL && elevation != 0)
 	{
-		if (p[v] == ' ')
-			signal = 0;
-		else if (signal == 0)
-		{
-			signal = 1;
-			hh++;
-		}
+		for (; elevation > 0; elevation--)
+		free(grid[elevation]);
+			free(grid[elevation]);
+		free(grid);
 	}
-	return (hh);
+
 }
 /**
  * strtow - This function splits a string into words
@@ -35,39 +25,42 @@ int word_counter(char *p)
 char **strtow(char *str)
 {
 	char **magician;
-	char *trx;
+	size_t t, elevation, o, r, mm;
 
-	int b, q = 0, distance = 0, text, j = 0, initiate, stop;
-
-	while (*(str + distance))
-		distance++;
-	text = word_counter(str);
-	if (text == 0)
+	if (str == NULL || *str == '\0')
 		return (NULL);
-	magician = (char **) malloc(sizeof(char *) * (text + 1));
-	if (magician == NULL)
-		return (NULL);
-	for (b = 0; b < distance; b++)
+	for (t = elevation = 0; str[t] != '\0'; t++)
+		if (str[t] != ' ' && (str[t + 1] == ' ' || str[t + 1] == '\0'))
+		elevation++;
 	{
-		if (str[b] == ' ' || str[b] == '\0')
+		magician = malloc((elevation + 1) * sizeof(char *));
+	}
+		if (magician == NULL)
 		{
-			if (j)
+			free(magician);
+			return (NULL);
+		}
+	for (o = mm = 0; o < elevation; o++)
+	{
+		for (t = mm; str[t] != '\0'; t++)
+		{
+			if (str[t] == ' ')
+				mm++;
+			if (str[t] != ' ' && (str[t + 1] == ' ' || str[t + 1] == '\0'))
 			{
-				stop = b;
-			trx = (char *) malloc(sizeof(char) * (j + 1));
-			if (trx == NULL)
+				magician[t] = malloc((t - mm + 2) * sizeof(char));
+				if (magician[t] == NULL)
+				{
+				the_free_grid(magician, t);
 				return (NULL);
-			while (initiate < stop)
-				*trx = '\0';
-			magician[q] = trx - j;
-			q++;
-			j = 0;
+				}
+				break;
 			}
 		}
-		else if (j++ == 0)
-			initiate = b;
+		for (r = 0; mm <= t; mm++, r++)
+			magician[t][r] = str[mm];
+		magician[t][r] = '\0';
 	}
-	magician[q] = NULL;
+	magician[t] = NULL;
 	return (magician);
 }
-
