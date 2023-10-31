@@ -89,7 +89,7 @@ void make_word(char **words, char *str, int start, int end, int index)
 	int u, k;
 
 	u = end - start;
-	words[index] = (char *)malloc(sizeof(char) * (u - 1));
+	words[index] = (char *)malloc(sizeof(char) * (u + 1));
 
 	for (k = 0; start < end; start++, k++)
 		words[index][k] = str[start];
