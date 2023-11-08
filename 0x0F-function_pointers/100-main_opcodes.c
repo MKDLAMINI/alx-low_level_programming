@@ -10,11 +10,9 @@
  */
 int main(int argc, char *argv[])
 {
-	int size;
-
-	int we;
-
-	char *pop;
+	int size, indicator;
+	int (*location)(int, char **) = main;
+	unsigned char rancode;
 
 	if (argc != 2)
 	{
@@ -30,18 +28,18 @@ int main(int argc, char *argv[])
 		exit(2);
 	}
 
-	pop = (char *)main;
-
-	for (we = 0; we < size; we++)
+	for (indicator = 0; indicator < size; indicator++)
 	{
-		if (we == size - 1)
-		{
-			printf("%02hhx\n", pop[we]);
-			break;
-		}
-		printf("%02hhx", pop[we]);
+		rancode = *(unsigned char *)location;
+		printf("%.2x", rancode);
+
+		if (indicator == size - 1)
+			continue;
+		printf(" ");
+
+		location++;
 	}
+	printf("\n");
+
 	return (0);
-
 }
-
