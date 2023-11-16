@@ -1,11 +1,14 @@
 #include "lists.h"
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 /**
  * add_node - func adds new node at the beginning of a list
- * @string: string value that is duplicated
+ * @str: string value that is duplicated
  * @head: head of list
  * Return: returns address of new element, otherwise return NULL
  */
-list_t *add_node(list_t **head, const char *string)
+list_t *add_node(list_t **head, const char *str)
 {
 	list_t *insert_new_node;
 
@@ -14,11 +17,11 @@ list_t *add_node(list_t **head, const char *string)
 	if (insert_new_node == NULL)
 		return (NULL);
 
-	insert_new_node->string = strdup(string);
+	insert_new_node->str = strdup(str);
 
-	insert_new_node->length = _strlen(string);
+	insert_new_node->len = _strlen(str);
 
-	insert_new_node->next_node = *head;
+	insert_new_node->next = *head;
 
 	*head = insert_new_node;
 
