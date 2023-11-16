@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdio.h>
 /**
- * lst_len - returns num of elements in linked list
+ * list_len - returns num of elements in linked list
  * @h: ptr in list func
  * Return: returns node count
  */
