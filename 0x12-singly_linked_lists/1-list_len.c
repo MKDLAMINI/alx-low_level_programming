@@ -1,4 +1,7 @@
 #include "lists.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 /**
  * lst_len - returns num of elements in linked list
  * @h: ptr in list func
