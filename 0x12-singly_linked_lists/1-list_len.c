@@ -12,7 +12,7 @@ size_t list_len(const list_t *h)
 	{
 		integer_tally++;
 
-		h = h->next_node;
+		h = h->next;
 	}
 	return (integer_tally);
 }
