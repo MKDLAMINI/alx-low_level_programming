@@ -22,16 +22,16 @@ int main(void)
         printf("Error\n");
         return (1);
     }
-    new->string = strdup("Hello");
-    new->length = 5;
-    new->next_node = head;
+    new->str = strdup("Hello");
+    new->len = 5;
+    new->next = head;
     head = new;
     n = print_list(head);
     printf("-> %lu elements\n", n);
 
     printf("\n");
-    free(new->string);
-    new->string = NULL;
+    free(new->str);
+    new->str = NULL;
     n = print_list(head);
     printf("-> %lu elements\n", n);
 

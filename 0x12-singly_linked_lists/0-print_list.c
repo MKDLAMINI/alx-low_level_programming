@@ -10,11 +10,11 @@ size_t print_list(const list_t *h)
 
 	while (h)
 	{
-		if (!h->string)
+		if (!h->str)
 		printf("[0] (nil)\n");
 		else
-		printf("[%lu] %s\n", h->length, h->string);
-		h = h->next_node;
+		printf("[%lu] %s\n", h->len, h->str);
+		h = h->next;
 		integer_tally++;
 	}
 	return (integer_tally);
