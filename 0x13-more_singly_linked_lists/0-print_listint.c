@@ -9,21 +9,14 @@
  */
 size_t print_listint(const listint_t *h)
 {
-	size_t integer_value = 0;
-
-	if (h == NULL)
-	{
-		printf("List is clear\n");
-		return (0);
-	}
-
+	size_t num_value = 0;
 
 	while (h != NULL)
 	{
 		printf("%d\n", h->n);
-		integer_value++;
+		num_value++;
 		h = h->next;
 	}
 
-	return (integer_value);
+	return (num_value);
 }
