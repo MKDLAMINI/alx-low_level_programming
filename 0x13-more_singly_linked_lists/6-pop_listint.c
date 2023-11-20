@@ -7,7 +7,7 @@
 int pop_listint(listint_t **head)
 {
 	listint_t *interim_ptr;
-       	int integer_tally;
+	int integer_tally;
 
 	if (!head || !*head)
 		return (0);
