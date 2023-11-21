@@ -7,30 +7,31 @@
 size_t free_listint_safe(listint_t **h)
 {
 	size_t length = 0;
-	int tar;
-	listint_t *interim_ptr;
+	int k;
+	listint_t *temp;
 
 	if (!h || !*h)
 		return  (0);
 
 	while (*h)
 	{
-		tar = *h - (*h)->next;
-		if (tar > 0)
+		k = *h - (*h)->next;
+		if (k > 0)
 		{
-			interim_ptr = (*h)->next;
+			temp = (*h)->next;
 			free(*h);
-			*h = interim_ptr;
+			*h = temp;
 			length++;
 		}
 		else
 		{
-			free(*h);
+			listint_t *temp = *h;
 			*h = NULL;
+			free(temp);
 			length++;
 			break;
 		}
 	}
-	*h = NULL;
+
 	return (length);
 }
