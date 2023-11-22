@@ -17,6 +17,17 @@ typedef struct listint_s
 	int n;
 	struct listint_s *next;
 } listint_t;
+/**
+ * struct listw_s - linked list
+ * @w: ptr to nodes
+ * @next: ptr to next node
+ * Description: linked list
+ */
+typedef struct listw_s 
+{
+	void *w;
+	struct listw_s *next;
+} listw_t;
 
 size_t print_listint(const listint_t *h);
 size_t listint_len(const listint_t *h);
@@ -33,7 +44,9 @@ listint_t *reverse_listint(listint_t **head);
 size_t print_listint_safe(const listint_t *head);
 size_t free_listint_safe(listint_t **h);
 listint_t *find_listint_loop(listint_t *head);
-size_t recurring_loop_listint_len(const listint_t *head);
+listint_t **_ma(listint_t **list, size_t size, listint_t *new);
+const listint_t **_m(const listint_t **list, size_t size, const listint_t *new);
+
 
 
 #endif

@@ -1,73 +1,64 @@
 #include "lists.h"
 /**
- * recurring_loop_listint_len - function establishes total tally of nodes
- * @head: ptr of a linked list
- * Return: return 0 if linked list does not loop
+ * free_listw - function frees linked list
+ * @head: ptr to linked list
  */
-size_t recurring_loop_listint_len(const listint_t *head)
+void free_listw(listw_t **head)
 {
-	size_t tally_node = 1;
-	const listint_t *gradual;
-	const listint_t *rapid_fire;
+	listw_t *temp;
+	listw_t *current;
 
-	if (head == NULL || head->next == NULL)
-		return (0);
-
-	gradual = head->next;
-	rapid_fire = (head->next)->next;
-
-	while (rapid_fire)
+	if (head != NULL)
 	{
-		if (gradual == rapid_fire)
+		current = *head;
+		while ((temp = current) != NULL)
 		{
-			gradual = head;
-			while (gradual != rapid_fire)
-			{
-				tally_node++;
-				gradual = gradual->next;
-
-				rapid_fire = rapid_fire->next;
-			}
-			gradual = gradual->next;
-			while (gradual != rapid_fire)
-			{
-				tally_node++;
-				gradual = gradual->next;
-			}
-			return (tally_node);
+			current = current->next;
+			free(temp);
 		}
-		gradual = gradual->next;
-		rapid_fire = (rapid_fire->next)->next;
+		*head = NULL;
 	}
-	return (0);
 }
 /**
  * print_listint_safe - function prints a linked list
- * @head: ptr to head of linked list
- * Return: return number of nodes
+ * @head: ptr to linked list
+ *
+ * Return: tally of nodes
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	size_t tally_node, new_placement = 0;
+	size_t dnodes = 0;
+	listw_t *pptr, *new, *sum;
 
-	tally_node = recurring_loop_listint_len(head);
+	pptr = NULL;
+	while (head != NULL)
+	while (head != NULL)
+	{
+		new = malloc(sizeof(listw_t));
 
-	if (tally_node == 0)
-	{
-		for (; head != NULL; tally_node++)
+		if (new == NULL)
+			exit(98);
+
+		new->w = (void *)head;
+		new->next = pptr;
+		pptr = new;
+
+		sum = pptr;
+
+		while (sum->next != NULL)
 		{
-			printf("[%p]%d\n", (void *)head, head->n);
-			head = head->next;
+			sum = sum->next;
+			if (head == sum->w)
+			{
+				printf("-> [%p] %d\n", (void *)head, head->n);
+				free_listw(&pptr);
+				return (dnodes);
+			}
 		}
+		printf("[%p] %d\n", (void *)head, head->n);
+		head = head->next;
+		dnodes++;
 	}
-	else
-	{
-		for (new_placement = 0; new_placement < tally_node; new_placement++)
-		{
-			printf("[%p]%d\n", (void *)head, head->n);
-			head = head->next;
-		}
-		printf("->[%p]%d\n", (void *)head, head->n);
-	}
-	return (tally_node);
+	free_listw(&pptr);
+	return (dnodes);
 }
