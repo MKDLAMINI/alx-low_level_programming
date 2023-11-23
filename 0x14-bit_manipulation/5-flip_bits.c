@@ -7,16 +7,14 @@
  */
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-	int v = 0;
-	int bit_tally = 0;
-	unsigned long int interim;
 	unsigned long int new_result = n ^ m;
+	unsigned int bit_tally = 0;
 
-	for (v = 20; v >= 0; v--)
+	while (new_result > 0)
 	{
-		interim = new_result >> v;
-		if (interim & 1)
-			bit_tally++;
+		bit_tally += new_result & 1;
+		new_result >>= 1;
 	}
+
 	return (bit_tally);
 }
