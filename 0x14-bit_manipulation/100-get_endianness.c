@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * get_endianness - function that checks endianness
- * Return 0 is successful, otherwise return 1 upon error
+ * Return: 0 is successful, otherwise return 1 upon error
  */
 int get_endianness(void)
 {
