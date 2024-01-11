@@ -3,6 +3,7 @@
 /**
  * sum_dlistint - returns function sum of data (n)
  * @head: head of the list
+ *
  * Return: returns sum of data of n
  */
 int sum_dlistint(dlistint_t *head)
@@ -23,3 +24,4 @@ int sum_dlistint(dlistint_t *head)
 		}
 	}
 	return (sum_tally);
+}
